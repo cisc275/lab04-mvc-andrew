@@ -25,6 +25,7 @@ public class EnumWAttributes {
 		case NORTH:
 			System.out.println("enum types work in switch statements!");
 		}
+		
 
 	}
 
