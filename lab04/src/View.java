@@ -9,17 +9,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class View{
+public class View extends JPanel{
 	HashMap<Direction,BufferedImage> movePics = new HashMap<>();
 	String cd = System.getProperty("user.dir").replace("\\","/");
 	
 	final int frameCount = 10;
     int picNum = 0;
     BufferedImage[] pics;
-    int xloc = 0;
-    int yloc = 0;
-    int xIncr = 8;//8
-    int yIncr = 2;//2
     final static int frameWidth = 500;//500
     final static int frameHeight = 300;//300
     final static int imgWidth = 165;
@@ -38,17 +34,22 @@ public class View{
 		}
 	}
 	
+	public void paint(Graphics g) {
+		picNum = (picNum+1)%frameCount;
+    	g.drawImage(pics[picNum], xloc+=xIncr, yloc+=yIncr, Color.gray, this);
+	}
+	
 	public int getWidth() {
-		return 1;
+		return frameWidth;
 	}
 	public int getHeight() {
-		return 1;
+		return frameHeight;
 	}
 	public int getImageWidth() {
-		return 1;
+		return imgWidth;
 	}
 	public int getImageHeight() {
-		return 1;
+		return imgHeight;
 	}
 	public void update(int x, int y, Direction direct) {
 		pics = new BufferedImage[10];
