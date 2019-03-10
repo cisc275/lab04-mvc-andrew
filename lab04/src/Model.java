@@ -2,7 +2,7 @@
 public class Model{
 	int xloc = 0;
     int yloc = 0;
-    int xIncr = 8;
+    int xIncr = 6;
     int yIncr = 8;
     int frameWidth;
     int frameHeight;
@@ -35,9 +35,9 @@ public class Model{
 		double direcAngle = Math.atan2(-yIncr, xIncr);
 		int octant = (int)Math.round( 8 * direcAngle / (2*Math.PI) + 8 ) % 8;
 		currentDirection = directs[octant];
-		System.out.println(xIncr+" "+yIncr+": "+currentDirection+" "+octant);
+		//System.out.println(xIncr+" "+yIncr+": "+currentDirection+" "+octant);
 		try {
-			Thread.sleep(300);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

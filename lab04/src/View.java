@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class View extends JPanel{
 	HashMap<Direction,BufferedImage> movePics = new HashMap<>();
 	String cd = System.getProperty("user.dir").replace("\\","/");
+	Direction[] directs = {Direction.EAST, Direction.NORTHEAST, Direction.NORTH, Direction.NORTHWEST, Direction.WEST, Direction.SOUTHWEST, Direction.SOUTH, Direction.SOUTHEAST};
 	
 	final int frameCount = 10;
     int picNum = 0;
@@ -22,8 +23,11 @@ public class View extends JPanel{
     final static int imgHeight = 165;
     int xloc = 0;
     int yloc = 0;
-	
-	Direction[] directs = {Direction.EAST, Direction.NORTHEAST, Direction.NORTH, Direction.NORTHWEST, Direction.WEST, Direction.SOUTHWEST, Direction.SOUTH, Direction.SOUTHEAST};
+    Direction currentDirection;
+    
+    JFrame frame = new JFrame();
+    
+    
 	View(){
 		for(Direction tempDir: directs) {
 			BufferedImage buffImg;
@@ -34,6 +38,11 @@ public class View extends JPanel{
 	    		e.printStackTrace();
 	    	}
 		}
+		frame.getContentPane().add(this);
+		frame.setBackground(Color.gray);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.setSize(frameWidth, frameHeight);
+    	frame.setVisible(true);
 	}
 	
 	public void paint(Graphics g) {
@@ -60,6 +69,8 @@ public class View extends JPanel{
 		for(int i = 0; i < frameCount; i++)
     		pics[i] = movePics.get(direct).getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
 		//this.paint(this.getComponentGraphics(null));
+		frame.repaint();
+		
 	}
 }
 
