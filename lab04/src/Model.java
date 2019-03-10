@@ -3,7 +3,7 @@ public class Model{
 	int xloc = 0;
     int yloc = 0;
     int xIncr = 8;
-    int yIncr = 2;
+    int yIncr = 8;
     int frameWidth;
     int frameHeight;
     int imgWidth;
@@ -32,7 +32,7 @@ public class Model{
 		}
 		xloc+=xIncr;
 		yloc+=yIncr;
-		double direcAngle = Math.atan2(xIncr, -yIncr);
+		double direcAngle = Math.atan2(-yIncr, xIncr);
 		int octant = (int)Math.round( 8 * direcAngle / (2*Math.PI) + 8 ) % 8;
 		currentDirection = directs[octant];
 		System.out.println(xIncr+" "+yIncr+": "+currentDirection+" "+octant);

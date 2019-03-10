@@ -1,5 +1,8 @@
 
+import java.awt.Color;
 import java.util.HashMap;
+
+import javax.swing.JFrame;
 
 public class EnumWAttributes {
 

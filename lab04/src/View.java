@@ -59,7 +59,7 @@ public class View extends JPanel{
 		pics = new BufferedImage[10];
 		for(int i = 0; i < frameCount; i++)
     		pics[i] = movePics.get(direct).getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
-		this.paint(this.getComponentGraphics(null));
+		//this.paint(this.getComponentGraphics(null));
 	}
 }
 
