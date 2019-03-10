@@ -26,6 +26,9 @@ public class EnumWAttributes {
 			System.out.println("enum types work in switch statements!");
 		}
 		
+		Controller contr = new Controller();
+		contr.start();
+		
 
 	}
 

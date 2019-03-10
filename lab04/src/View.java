@@ -20,8 +20,10 @@ public class View extends JPanel{
     final static int frameHeight = 300;//300
     final static int imgWidth = 165;
     final static int imgHeight = 165;
+    int xloc = 0;
+    int yloc = 0;
 	
-	Direction[] directs = {Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST, Direction.NORTHEAST, Direction.NORTHWEST, Direction.SOUTHEAST, Direction.SOUTHWEST};
+	Direction[] directs = {Direction.EAST, Direction.NORTHEAST, Direction.NORTH, Direction.NORTHWEST, Direction.WEST, Direction.SOUTHWEST, Direction.SOUTH, Direction.SOUTHEAST};
 	View(){
 		for(Direction tempDir: directs) {
 			BufferedImage buffImg;
@@ -36,7 +38,7 @@ public class View extends JPanel{
 	
 	public void paint(Graphics g) {
 		picNum = (picNum+1)%frameCount;
-    	g.drawImage(pics[picNum], xloc+=xIncr, yloc+=yIncr, Color.gray, this);
+    	g.drawImage(pics[picNum], xloc, yloc, Color.gray, this);
 	}
 	
 	public int getWidth() {
@@ -52,9 +54,12 @@ public class View extends JPanel{
 		return imgHeight;
 	}
 	public void update(int x, int y, Direction direct) {
+		xloc = x;
+		yloc = y;
 		pics = new BufferedImage[10];
 		for(int i = 0; i < frameCount; i++)
     		pics[i] = movePics.get(direct).getSubimage(imgWidth*i, 0, imgWidth, imgHeight);
+		this.paint(this.getComponentGraphics(null));
 	}
 }
 

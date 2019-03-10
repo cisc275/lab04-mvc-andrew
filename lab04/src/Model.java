@@ -8,6 +8,9 @@ public class Model{
     int frameHeight;
     int imgWidth;
     int imgHeight;
+    Direction currentDirection = Direction.SOUTHEAST;
+    Direction[] directs = {Direction.EAST, Direction.NORTHEAST, Direction.NORTH, Direction.NORTHWEST, Direction.WEST, Direction.SOUTHWEST, Direction.SOUTH, Direction.SOUTHEAST};
+    
     Model(){
     	frameWidth = 10;
     	frameHeight = 10;
@@ -21,15 +24,24 @@ public class Model{
 		imgHeight = iH;
 	}
 	public void updateLocationAndDirection(){
-		if(xloc >= (frameWidth-imgWidth) || xloc < -1*imgWidth/4) {
+		if(xloc+xIncr >= (frameWidth-imgWidth) || xloc+xIncr < -1*imgWidth/4) {
     		xIncr*=-1;
 		}
-		if(yloc >= (frameHeight-imgHeight) || yloc < -1*imgHeight/4) {
-    		xIncr*=-1;
+		if(yloc+yIncr >= (frameHeight-imgHeight) || yloc+yIncr < -1*imgHeight/4) {
+    		yIncr*=-1;
 		}
 		xloc+=xIncr;
 		yloc+=yIncr;
-		
+		double direcAngle = Math.atan2(xIncr, -yIncr);
+		int octant = (int)Math.round( 8 * direcAngle / (2*Math.PI) + 8 ) % 8;
+		currentDirection = directs[octant];
+		System.out.println(xIncr+" "+yIncr+": "+currentDirection+" "+octant);
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public int getX() {
 		return xloc;
@@ -38,7 +50,7 @@ public class Model{
 		return yloc;
 	}
 	public Direction getDirect() {
-		return Direction.NORTH;
+		return currentDirection;
 	}
 }
 
