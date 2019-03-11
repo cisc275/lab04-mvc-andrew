@@ -15,14 +15,21 @@
 public class Model{
 	int xloc = 0;
     int yloc = 0;
-    int xIncr = 1;
-    int yIncr = 8;
+    int xIncr = 8;
+    int yIncr = 5;
     int frameWidth=0;
     int frameHeight=0;
     int imgWidth=0;
     int imgHeight=0;
     Direction currentDirection = Direction.SOUTHEAST;
-    Direction[] directs = {Direction.EAST, Direction.NORTHEAST, Direction.NORTH, Direction.NORTHWEST, Direction.WEST, Direction.SOUTHWEST, Direction.SOUTH, Direction.SOUTHEAST};
+    Direction[] directs = {Direction.EAST,
+    		Direction.NORTHEAST,
+    		Direction.NORTH,
+    		Direction.NORTHWEST,
+    		Direction.WEST,
+    		Direction.SOUTHWEST,
+    		Direction.SOUTH,
+    		Direction.SOUTHEAST};
     
     //Constructor that takes the image and screen dimensions and assigns values
 	Model(int w, int h, int iW, int iH){
@@ -35,10 +42,10 @@ public class Model{
 	//updateLocationAndDirection() updates the position and direction of the model
 	//and turns it around if it goes off the screen
 	public void updateLocationAndDirection(){
-		if(xloc+xIncr >= (frameWidth-imgWidth) || xloc+xIncr < -1*imgWidth/4) {
+		if(xloc >= (frameWidth-imgWidth) || xloc < -1*imgWidth/4) {
     		xIncr*=-1;
 		}
-		if(yloc+yIncr >= (frameHeight-imgHeight) || yloc+yIncr < -1*imgHeight/4) {
+		if(yloc >= (frameHeight-imgHeight) || yloc < -1*imgHeight/4) {
     		yIncr*=-1;
 		}
 		xloc+=xIncr;
@@ -46,7 +53,6 @@ public class Model{
 		double direcAngle = Math.atan2(-yIncr, xIncr);
 		int octant = (int)Math.round( 8 * direcAngle / (2*Math.PI) + 8 ) % 8;
 		currentDirection = directs[octant];
-		//System.out.println(xIncr+" "+yIncr+": "+currentDirection+" "+octant);
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
@@ -69,7 +75,3 @@ public class Model{
 		return currentDirection;
 	}
 }
-
-
-
-

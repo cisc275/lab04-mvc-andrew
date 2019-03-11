@@ -56,7 +56,7 @@ public class View extends JPanel{
     	frame.setVisible(true);
 	}
 	
-	//paint() updates the subimage and paints its location on frame
+	//paint() updates the sub-image and paints its location on frame
 	public void paint(Graphics g) {
 		picNum = (picNum+1)%frameCount;
     	g.drawImage(pics[picNum], xloc, yloc, Color.gray, this);
